@@ -33,14 +33,13 @@ export default function ReviewsPage() {
             <span className="section-kicker">Customer feedback</span>
             <h1>Real experiences. Shared on Google.</h1>
             <p>See customer feedback for LAP Cleaning Services directly on its official Google profile.</p>
-            <a className="button button-primary" href={business.googleReviews} target="_blank" rel="noopener noreferrer">Read Google reviews</a>
           </div>
           <figure><Image src="/images/cleaning-detail-gold-coast.jpg" alt="Careful surface cleaning by LAP Cleaning Services" width={1600} height={900} priority sizes="(max-width: 900px) 100vw, 48vw" /></figure>
         </header>
         <section className="reviews-page-list content-shell" aria-labelledby="reviews-list-title">
           <div className="section-heading"><span className="section-kicker">Google Reviews</span><h2 id="reviews-list-title">What customers say about LAP Services.</h2><p>These reviews were supplied from the LAP Services Google profile.</p></div>
           <ReviewCards />
-          <a className="button button-primary" href={business.googleReviews} target="_blank" rel="noopener noreferrer">Open Google profile ↗</a>
+          <a className="button button-primary" href={business.googleReviews} target="_blank" rel="noopener noreferrer">Read on Google ↗</a>
         </section>
         <section className="review-cta content-shell">
           <span className="section-kicker">Need a cleaner?</span><h2>Tell LAP what your space needs.</h2><p>Choose from practical cleaning options available across the Gold Coast.</p>

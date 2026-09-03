@@ -55,8 +55,9 @@ export default function Home() {
         </section>
 
         <section className="home-reviews content-shell" aria-labelledby="reviews-title">
-          <div className="section-heading home-reviews-heading"><div><span className="section-kicker">Customer feedback</span><h2 id="reviews-title">Loved by Gold Coast customers.</h2></div><a className="button button-quiet" href={business.googleReviews} target="_blank" rel="noopener noreferrer">Read on Google ↗</a></div>
+          <div className="section-heading home-reviews-heading"><div><span className="section-kicker">Customer feedback</span><h2 id="reviews-title">Loved by Gold Coast customers.</h2></div></div>
           <ReviewCards />
+          <div className="home-reviews-action"><a className="button button-quiet" href={business.googleReviews} target="_blank" rel="noopener noreferrer">Read on Google ↗</a></div>
         </section>
 
         <section className="home-services-v2 content-shell" id="services" aria-labelledby="services-title">

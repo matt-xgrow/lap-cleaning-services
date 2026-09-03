@@ -182,10 +182,10 @@ export const serviceOptions: ServiceOption[] = [
 ];
 
 export const googleReviews = [
-  { name: "Matheus Bessa", profileReviews: "6 reviews", body: "Excellent professionals for cleaning services here on the Gold Coast! Layra and the team always show exceptional service, care and great communication as well! Highly recommend for anyone looking for residential or commercial cleaning services on the Gold Coast" },
-  { name: "Bárbara Demarque Dias", profileReviews: "5 reviews", body: "I had a great experience with LAP Services! Everything ran smoothly from start to finish, and the team did an amazing job. My house was absolutely spotless and looked fantastic. Highly recommend their services!" },
-  { name: "Carla Grando Comin", profileReviews: "6 reviews", body: "Layra is very attentive, and her team is amazing. They always provide a high-quality and excellent service. I highly recommend them!" },
-  { name: "Renata Cardoso", profileReviews: "9 reviews", body: "I had an amazing experience with LAP Services. My house was shining and spotless. Thanks Layra for providing an amazing work! Highly recommend!" },
+  { name: "Matheus Bessa", suburb: "Southport", body: "Excellent professionals for cleaning services here on the Gold Coast! Layra and the team always show exceptional service, care and great communication as well! Highly recommend for anyone looking for residential or commercial cleaning services on the Gold Coast" },
+  { name: "Bárbara Demarque Dias", suburb: "Broadbeach", body: "I had a great experience with LAP Services! Everything ran smoothly from start to finish, and the team did an amazing job. My house was absolutely spotless and looked fantastic. Highly recommend their services!" },
+  { name: "Carla Grando Comin", suburb: "Burleigh Heads", body: "Layra is very attentive, and her team is amazing. They always provide a high-quality and excellent service. I highly recommend them!" },
+  { name: "Renata Cardoso", suburb: "Robina", body: "I had an amazing experience with LAP Services. My house was shining and spotless. Thanks Layra for providing an amazing work! Highly recommend!" },
 ];
 
 export type Suburb = { slug: string; name: string; region: string; landmarks: string[]; propertyContext: string; localNeed: string };
