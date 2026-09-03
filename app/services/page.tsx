@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "../components/SafeLink";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { JsonLd } from "../components/JsonLd";
@@ -15,6 +16,15 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const serviceImages: Record<string, string> = {
+    housekeeping: "/images/lap-cleaner-gold-coast-home.jpg",
+    "regular-casual-cleaning": "/images/cleaning-detail-gold-coast.jpg",
+    "general-residential-commercial-cleaning": "/images/airbnb-cleaning-gold-coast.jpg",
+    "bond-cleaning": "/images/cleaning-detail-gold-coast.jpg",
+    "spring-cleaning": "/images/lap-cleaner-gold-coast-home.jpg",
+    "carpet-mattress-rugs-upholstery": "/images/cleaning-detail-gold-coast.jpg",
+    "personal-organisation": "/images/lap-cleaner-gold-coast-home.jpg",
+  };
   const schema = schemaGraph(
     businessSchema(),
     breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]),
@@ -35,10 +45,13 @@ export default function ServicesPage() {
           {serviceOptions.map((service, index) => {
             const href = service.detailSlug ? `/services/${service.detailSlug}` : "/#quote";
             return <Link className="service-overview-card" href={href} key={service.slug} aria-label={`View ${service.name}`}>
-              <span className="service-overview-number">0{index + 1}</span>
-              <h2>{service.name}</h2>
-              <p>{service.description}</p>
-              <span className="service-overview-link">View service <span aria-hidden="true">↗</span></span>
+              <div className="service-overview-image"><Image src={serviceImages[service.slug]} alt={`${service.name} by LAP Cleaning Services`} fill loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw" /></div>
+              <div className="service-overview-content">
+                <span className="service-overview-number">0{index + 1}</span>
+                <h2>{service.name}</h2>
+                <p>{service.description}</p>
+                <span className="service-overview-link">View service <span aria-hidden="true">↗</span></span>
+              </div>
             </Link>;
           })}
         </section>

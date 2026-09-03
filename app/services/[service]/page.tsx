@@ -17,9 +17,9 @@ type Props = { params: Promise<{ service: string }> };
 
 const serviceImages: Record<string, string> = {
   "home-cleaning-gold-coast": "/images/lap-cleaner-gold-coast-home.jpg",
-  "office-cleaning-gold-coast": "/images/office-cleaning-gold-coast.jpg",
+  "office-cleaning-gold-coast": "/images/cleaning-detail-gold-coast.jpg",
   "bond-cleaning-gold-coast": "/images/cleaning-detail-gold-coast.jpg",
-  "corporate-cleaning-gold-coast": "/images/lap-cleaning-team-gold-coast.jpg",
+  "corporate-cleaning-gold-coast": "/images/office-cleaning-gold-coast.jpg",
   "airbnb-cleaning-gold-coast": "/images/airbnb-cleaning-gold-coast.jpg",
   "carpet-mattress-rugs-upholstery": "/images/cleaning-detail-gold-coast.jpg",
   "personal-organisation": "/images/lap-cleaner-gold-coast-home.jpg",
@@ -75,7 +75,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="service-first-section content-shell" id="service-quote" aria-label={`${service.shortName} quote and information`}>
         <div className="service-first-form">
           <div className="service-first-form-heading"><span className="section-kicker">Free Gold Coast quote</span><h2>Tell us about your {service.singular}.</h2><p>Choose your suburb and timing. Name and phone are required; email is optional.</p></div>
-          <QuoteSurvey initialService={service.slug} />
+          <QuoteSurvey />
         </div>
         <aside className="service-first-info">
           <figure className="service-first-image"><Image src={serviceImages[service.slug]} alt={`LAP Cleaning Services ${service.shortName.toLowerCase()} on the Gold Coast`} fill priority sizes="(max-width: 900px) 100vw, 42vw" /></figure>

@@ -570,7 +570,33 @@ ul, ol { margin: 0; padding: 0; }
 
 @media (min-width: 900px) {
   .service-first-section { grid-template-columns: minmax(0, .98fr) minmax(0, 1.02fr); align-items: start; gap: 28px; }
-  .service-first-form { position: sticky; top: 104px; }
+  .service-first-form { position: static; }
   .service-first-image { min-height: 270px; }
   .service-details-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Latest visual polish: more breathing room, compact image-led service cards. */
+.home-hero-v2 { margin-top: 26px; }
+.home-hero-content { padding-top: 84px; }
+.home-hero-content h1 { margin-top: 8px; }
+.services-overview-hero { padding-block: 52px 34px; }
+.services-overview-hero h1 { max-width: 760px; font-size: clamp(2rem, 3.8vw, 3.2rem); }
+.services-overview-hero > p { max-width: 580px; font-size: .94rem; }
+.services-overview-grid { gap: 14px; padding-block: 18px 80px; }
+.services-overview-card { min-height: 0; aspect-ratio: auto; display: flex; flex-direction: column; gap: 0; padding: 0; overflow: hidden; }
+.services-overview-card:hover { transform: translateY(-3px); }
+.service-overview-image { position: relative; height: 126px; flex: 0 0 126px; overflow: hidden; background: var(--sand); }
+.service-overview-image img { object-fit: cover; transition: transform .45s ease; }
+.services-overview-card:hover .service-overview-image img { transform: scale(1.025); }
+.service-overview-content { display: grid; align-content: start; gap: 8px; min-height: 164px; padding: 16px 17px 17px; }
+.services-overview-card h2 { max-width: 240px; margin: 0; font-size: clamp(.95rem, 1.25vw, 1.1rem); line-height: 1.13; }
+.services-overview-card p { max-width: 260px; font-size: .78rem; line-height: 1.42; }
+.service-overview-link { margin-top: auto; font-size: .75rem; }
+.service-first-section { padding-top: 20px; }
+.service-first-form-heading h2 { margin-top: 4px; }
+
+@media (min-width: 900px) {
+  .home-hero-content { padding-top: 108px; }
+  .services-overview-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .service-overview-image { height: 134px; flex-basis: 134px; }
 }
