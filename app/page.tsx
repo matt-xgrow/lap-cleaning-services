@@ -61,7 +61,7 @@ export default function Home() {
         <section className="home-services-v2 content-shell" id="services" aria-labelledby="services-title">
           <div className="minimal-heading">
             <div><span className="section-kicker">Our services</span><h2 id="services-title">The right clean for your space.</h2></div>
-            <div><p>Choose a service to see what it can cover and request a tailored Gold Coast quote.</p><Link className="text-link" href="/services">View all services <span aria-hidden="true">↗</span></Link></div>
+            <div><p>Choose a service to see what it can cover and request a tailored Gold Coast quote.</p><Link className="text-link" href="https://lap-cleaning-services-gold-coast.vercel.app/services">View all services <span aria-hidden="true">↗</span></Link></div>
           </div>
           <ServiceCards />
         </section>
