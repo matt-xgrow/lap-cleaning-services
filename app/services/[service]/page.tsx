@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "../../components/Breadcrumbs";
 import { FaqBlock } from "../../components/FaqBlock";
 import { JsonLd } from "../../components/JsonLd";
+import { MobileActionBar } from "../../components/MobileActionBar";
 import { PageCta } from "../../components/PageCta";
 import { QuoteSurvey } from "../../components/QuoteSurvey";
 import { SiteFooter } from "../../components/SiteFooter";
@@ -93,6 +94,6 @@ export default async function ServicePage({ params }: Props) {
       </div></section>
       <section className="service-area-copy content-shell" aria-labelledby="service-areas-title"><div><span className="section-kicker">Local service area</span><h2 id="service-areas-title">Request {service.shortName.toLowerCase()} across the Gold Coast.</h2><p>Choose a suburb for local property context and a direct quote path.</p></div><div className="area-chip-grid">{suburbs.map((suburb) => <Link key={suburb.slug} href={`/locations/${suburb.slug}`}>{suburb.name}</Link>)}</div></section>
       <PageCta title={`Ready to arrange ${service.shortName.toLowerCase()}?`} />
-    </main><SiteFooter /><Link className="mobile-quote-bar" href="#service-quote">Get my free quote <span aria-hidden="true">→</span></Link>
+    </main><SiteFooter /><MobileActionBar quoteHref="#service-quote" />
   </>;
 }

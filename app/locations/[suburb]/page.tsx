@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "../../components/Breadcrumbs";
 import { FaqBlock } from "../../components/FaqBlock";
 import { JsonLd } from "../../components/JsonLd";
+import { MobileActionBar } from "../../components/MobileActionBar";
 import { QuoteSurvey } from "../../components/QuoteSurvey";
 import { ServiceCards } from "../../components/ServiceCards";
 import { SiteFooter } from "../../components/SiteFooter";
@@ -44,5 +45,5 @@ export default async function LocationPage({ params }: Props) {
     <section className="location-scenarios"><div className="content-shell"><span className="section-kicker">Typical local situations</span><h2>Different properties need different conversations.</h2><div className="scenario-grid"><article><h3>Homes and apartments</h3><p>{suburb.propertyContext} Home cleaning and bond cleaning enquiries should name the layout, access and current priorities.</p></article><article><h3>Workplaces</h3><p>Office and corporate cleaning requests are clearer when reception, work zones, amenities and the preferred access window are identified.</p></article><article><h3>Short-stay properties</h3><p>Airbnb cleaning enquiries should include changeover timing, keys, parking, lifts and the presentation tasks expected between guests.</p></article></div></div></section>
     <FaqBlock items={faqs} title={`Cleaning in ${suburb.name}: common questions.`} />
     <section className="embedded-quote" id="location-quote"><div className="quote-intro"><span className="section-kicker">Check your {suburb.name} property</span><h2>Request a cleaning quote.</h2><p>Choose one service, confirm the suburb and leave the best phone number for LAP to respond.</p></div><QuoteSurvey /></section>
-  </main><SiteFooter /><Link className="mobile-quote-bar" href="#location-quote">Get my free quote <span aria-hidden="true">→</span></Link></>;
+  </main><SiteFooter /><MobileActionBar quoteHref="#location-quote" /></>;
 }

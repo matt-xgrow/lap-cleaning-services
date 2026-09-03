@@ -10,7 +10,6 @@ export function ServiceCards({ headingLevel = "h3" }: { headingLevel?: "h2" | "h
           <Link href={`/services/${service.slug}`} aria-label={`View ${service.shortName.toLowerCase()} services`}>
             <span className="service-card-number" aria-hidden="true">0{index + 1}</span>
             <Heading>{service.shortName}</Heading>
-            <span className="service-card-arrow" aria-hidden="true">↗</span>
           </Link>
         </article>
       ))}

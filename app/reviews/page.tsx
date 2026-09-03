@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "../components/SafeLink";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { JsonLd } from "../components/JsonLd";
+import { MobileActionBar } from "../components/MobileActionBar";
 import { ReviewCards } from "../components/ReviewCards";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
@@ -47,7 +48,7 @@ export default function ReviewsPage() {
         </section>
       </main>
       <SiteFooter />
-      <Link className="mobile-quote-bar" href="/#quote">Get my free quote <span aria-hidden="true">→</span></Link>
+      <MobileActionBar />
     </>
   );
 }

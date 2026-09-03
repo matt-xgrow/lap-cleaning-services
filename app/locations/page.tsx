@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "../components/SafeLink";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { JsonLd } from "../components/JsonLd";
+import { MobileActionBar } from "../components/MobileActionBar";
 import { PageCta } from "../components/PageCta";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
@@ -17,5 +18,5 @@ export default function LocationsPage() {
     <section className="location-directory content-shell" aria-label="Gold Coast suburb pages">{suburbs.map((suburb, index) => <Link href={`/locations/${suburb.slug}`} key={suburb.slug}><span>0{index + 1}</span><div><h2>{suburb.name}</h2><p>{suburb.region}</p></div><b aria-hidden="true">↗</b></Link>)}</section>
     <section className="answer-panel content-shell"><span className="section-kicker">Your suburb is not listed?</span><h2>Still on the Gold Coast? Send the suburb in your quote request.</h2><p>The directory focuses on major suburbs for useful local information. It is not presented as the complete coverage list. LAP can confirm availability for the exact Gold Coast address after receiving your enquiry.</p></section>
     <PageCta title="Find the right cleaning service for your suburb." />
-  </main><SiteFooter /><Link className="mobile-quote-bar" href="/#quote">Check my suburb <span aria-hidden="true">→</span></Link></>;
+  </main><SiteFooter /><MobileActionBar /></>;
 }

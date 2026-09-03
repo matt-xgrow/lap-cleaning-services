@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "../components/SafeLink";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { JsonLd } from "../components/JsonLd";
+import { MobileActionBar } from "../components/MobileActionBar";
 import { PageCta } from "../components/PageCta";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
@@ -63,7 +64,7 @@ export default function ServicesPage() {
         <PageCta title="Not sure which service fits?" />
       </main>
       <SiteFooter />
-      <Link className="mobile-quote-bar" href="/#quote">Get my free quote <span aria-hidden="true">→</span></Link>
+      <MobileActionBar />
     </>
   );
 }

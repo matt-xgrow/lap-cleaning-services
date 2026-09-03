@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "./components/SafeLink";
 import { FaqBlock } from "./components/FaqBlock";
 import { JsonLd } from "./components/JsonLd";
+import { MobileActionBar } from "./components/MobileActionBar";
 import { QuoteSurvey } from "./components/QuoteSurvey";
 import { ReviewCards } from "./components/ReviewCards";
 import { ServiceCards } from "./components/ServiceCards";
@@ -121,7 +122,7 @@ export default function Home() {
         </section>
       </main>
       <SiteFooter />
-      <Link className="mobile-quote-bar" href="/#quote">Get my free quote <span aria-hidden="true">→</span></Link>
+      <MobileActionBar />
     </>
   );
 }

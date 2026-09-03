@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { FaqBlock } from "../components/FaqBlock";
 import { JsonLd } from "../components/JsonLd";
+import { MobileActionBar } from "../components/MobileActionBar";
 import { QuoteSurvey } from "../components/QuoteSurvey";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
@@ -54,5 +55,5 @@ export default async function ServiceLocationPage({ params }: Props) {
     <section className="quote-factors-band"><div className="content-shell"><span className="section-kicker">Pricing without guesswork</span><h2>Four details that shape the quote.</h2><ol>{service.quoteFactors.map((factor,index) => <li key={factor}><span>0{index+1}</span><strong>{factor}</strong></li>)}</ol></div></section>
     <FaqBlock items={faqs} title={`${service.shortName} in ${suburb.name}: questions answered.`} />
     <section className="embedded-quote" id="combo-quote"><div className="quote-intro"><span className="section-kicker">Local quote request</span><h2>Tell LAP about the {suburb.name} property.</h2><p>{service.shortName} is preselected. Confirm the suburb, timing and your preferred contact details.</p></div><QuoteSurvey initialService={service.slug} /></section>
-  </main><SiteFooter /><Link className="mobile-quote-bar" href="#combo-quote">Get my free quote <span aria-hidden="true">→</span></Link></>;
+  </main><SiteFooter /><MobileActionBar quoteHref="#combo-quote" /></>;
 }
