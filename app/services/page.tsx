@@ -20,7 +20,7 @@ export default function ServicesPage() {
     "home-cleaning-gold-coast": "/images/lap-cleaner-gold-coast-home.jpg",
     "office-cleaning-gold-coast": "/images/office-cleaning-gold-coast.jpg",
     "bond-cleaning-gold-coast": "/images/bond-cleaning-gold-coast.webp",
-    "corporate-cleaning-gold-coast": "/images/office-cleaning-gold-coast.jpg",
+    "corporate-cleaning-gold-coast": "/images/corporate-cleaning-corridor-gold-coast.webp",
     "airbnb-cleaning-gold-coast": "/images/airbnb-turnover-gold-coast.webp",
     "carpet-mattress-rugs-upholstery": "/images/carpet-upholstery-cleaning-gold-coast.webp",
     "personal-organisation": "/images/personal-organisation-gold-coast.webp",
