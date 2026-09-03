@@ -6,7 +6,7 @@ import { JsonLd } from "../components/JsonLd";
 import { PageCta } from "../components/PageCta";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-import { business, serviceOptions, SITE_URL } from "../../lib/site-data";
+import { business, services, SITE_URL } from "../../lib/site-data";
 import { breadcrumbSchema, businessSchema, schemaGraph } from "../../lib/schema";
 
 export const metadata: Metadata = {
@@ -17,14 +17,19 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   const serviceImages: Record<string, string> = {
-    housekeeping: "/images/lap-cleaner-gold-coast-home.jpg",
-    "regular-casual-cleaning": "/images/cleaning-detail-gold-coast.jpg",
-    "general-residential-commercial-cleaning": "/images/airbnb-cleaning-gold-coast.jpg",
-    "bond-cleaning": "/images/cleaning-detail-gold-coast.jpg",
-    "spring-cleaning": "/images/lap-cleaner-gold-coast-home.jpg",
+    "home-cleaning-gold-coast": "/images/lap-cleaner-gold-coast-home.jpg",
+    "office-cleaning-gold-coast": "/images/cleaning-detail-gold-coast.jpg",
+    "bond-cleaning-gold-coast": "/images/cleaning-detail-gold-coast.jpg",
+    "corporate-cleaning-gold-coast": "/images/office-cleaning-gold-coast.jpg",
+    "airbnb-cleaning-gold-coast": "/images/airbnb-cleaning-gold-coast.jpg",
     "carpet-mattress-rugs-upholstery": "/images/cleaning-detail-gold-coast.jpg",
     "personal-organisation": "/images/lap-cleaner-gold-coast-home.jpg",
   };
+  const serviceOverview = [
+    ...services,
+    { slug: "carpet-mattress-rugs-upholstery", name: "Carpet, mattress, rugs & upholstery", shortName: "Carpet, mattress, rugs & upholstery", description: "Specialist fabric and floor care planned around your property." },
+    { slug: "personal-organisation", name: "Personal organisation", shortName: "Personal organisation", description: "Calm, practical support to make your home easier to use." },
+  ];
   const schema = schemaGraph(
     businessSchema(),
     breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]),
@@ -42,8 +47,8 @@ export default function ServicesPage() {
           <p>LAP Services offers practical cleaning support across the Gold Coast, Queensland. Choose the closest fit below and request a tailored quote.</p>
         </header>
         <section className="services-overview-grid content-shell" aria-label="LAP Services cleaning options">
-          {serviceOptions.map((service, index) => {
-            const href = service.detailSlug ? `/services/${service.detailSlug}` : "/#quote";
+          {serviceOverview.map((service, index) => {
+            const href = `/services/${service.slug}`;
             return <Link className="service-overview-card" href={href} key={service.slug} aria-label={`View ${service.name}`}>
               <div className="service-overview-image"><Image src={serviceImages[service.slug]} alt={`${service.name} by LAP Cleaning Services`} fill loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw" /></div>
               <div className="service-overview-content">

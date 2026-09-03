@@ -105,7 +105,7 @@ export default function Home() {
             <h2 id="area-title">Local cleaning, across the coast.</h2>
             <p>LAP serves the Gold Coast, Queensland only. Check your local page for available cleaning services.</p>
             <div className="area-chip-grid">{suburbs.map((suburb) => <Link key={suburb.slug} href={`/locations/${suburb.slug}`}>{suburb.name}</Link>)}</div>
-            <Link className="text-link" href="/locations">View all service areas <span aria-hidden="true">→</span></Link>
+            <Link className="text-link" href="/locations">View all areas <span aria-hidden="true">→</span></Link>
           </div>
         </section>
 
