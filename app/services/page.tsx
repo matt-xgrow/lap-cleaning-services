@@ -26,7 +26,7 @@ export default function ServicesPage() {
     "personal-organisation": "/images/lap-cleaner-gold-coast-home.jpg",
   };
   const serviceOverview = [
-    ...services,
+    ...services.map((service) => ({ ...service, description: service.summary })),
     { slug: "carpet-mattress-rugs-upholstery", name: "Carpet, mattress, rugs & upholstery", shortName: "Carpet, mattress, rugs & upholstery", description: "Specialist fabric and floor care planned around your property." },
     { slug: "personal-organisation", name: "Personal organisation", shortName: "Personal organisation", description: "Calm, practical support to make your home easier to use." },
   ];

@@ -1,4 +1,15 @@
-import { env } from "cloudflare:workers";
+type RuntimeEnv = { DB?: D1Database };
+
+async function getRuntimeEnv(): Promise<RuntimeEnv> {
+  try {
+    // Keep the Cloudflare-only module out of the Vercel bundle while retaining
+    // D1 support in the Sites/Workers deployment.
+    const load = new Function("return import('cloudflare:workers')") as () => Promise<{ env?: RuntimeEnv }>;
+    return (await load()).env ?? {};
+  } catch {
+    return {};
+  }
+}
 
 type QuotePayload = Partial<Record<"clientId" | "service" | "suburb" | "timing" | "name" | "phone" | "email" | "website" | "pageUrl" | "referrer" | "timestamp" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent", string>>;
 
@@ -55,16 +66,18 @@ export async function POST(request: Request) {
   const valid = lead.service && lead.suburb && lead.timing && lead.name && lead.phone.replace(/\D/g, "").length >= 8 && (!lead.email || /^\S+@\S+\.\S+$/.test(lead.email));
   if (!valid) return Response.json({ error: "Please check the required details" }, { status: 422 });
 
-  const database = env.DB as D1Database;
-  await database.batch([database.prepare(createTableSql), database.prepare(createIndexSql)]);
-  await database.prepare(`INSERT INTO quote_requests_v2 (
-    id, client_id, service, suburb, timing, name, phone, email, page_url, referrer,
-    utm_source, utm_medium, utm_campaign, utm_term, utm_content, status, created_at
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', ?)`)
-    .bind(crypto.randomUUID(), lead.clientId, lead.service, lead.suburb, lead.timing, lead.name, lead.phone, lead.email, lead.pageUrl, lead.referrer, lead.utmSource, lead.utmMedium, lead.utmCampaign, lead.utmTerm, lead.utmContent, lead.createdAt)
-    .run();
-
   const webhookUrl = process.env.QUOTE_WEBHOOK_URL?.trim();
+  const database = (await getRuntimeEnv()).DB;
+  if (database) {
+    await database.batch([database.prepare(createTableSql), database.prepare(createIndexSql)]);
+    await database.prepare(`INSERT INTO quote_requests_v2 (
+      id, client_id, service, suburb, timing, name, phone, email, page_url, referrer,
+      utm_source, utm_medium, utm_campaign, utm_term, utm_content, status, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', ?)`)
+      .bind(crypto.randomUUID(), lead.clientId, lead.service, lead.suburb, lead.timing, lead.name, lead.phone, lead.email, lead.pageUrl, lead.referrer, lead.utmSource, lead.utmMedium, lead.utmCampaign, lead.utmTerm, lead.utmContent, lead.createdAt)
+      .run();
+  }
+
   if (webhookUrl) {
     try {
       await fetch(webhookUrl, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ...lead, clientIdentifier: lead.clientId }) });
@@ -72,6 +85,8 @@ export async function POST(request: Request) {
       console.error("Quote webhook delivery failed", error);
     }
   }
+
+  if (!database && !webhookUrl) return Response.json({ error: "Quote storage is not configured" }, { status: 503 });
 
   return Response.json({ ok: true }, { status: 201 });
 }
