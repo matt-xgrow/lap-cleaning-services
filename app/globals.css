@@ -479,7 +479,6 @@ ul, ol { margin: 0; padding: 0; }
 .review-card { min-width: 0; display: flex; flex-direction: column; gap: 18px; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
 .review-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .review-stars { color: #b67a26; font-size: .9rem; letter-spacing: .13em; }
-.review-source { color: var(--ink-soft); font-size: .68rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 .review-card p { color: #51473e; font-size: .88rem; line-height: 1.55; }
 .review-card footer { display: grid; gap: 2px; margin-top: auto; padding-top: 13px; border-top: 1px solid #eee5da; }
 .review-card footer strong { font-size: .82rem; }
@@ -548,6 +547,8 @@ ul, ol { margin: 0; padding: 0; }
 @media (min-width: 900px) {
   .services-overview-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .services-overview-card { min-height: 205px; }
+  .home-reviews { padding-bottom: 24px; }
+  .home-services-v2 { padding-top: 24px; }
 }
 
 /* Mobile-only lighter hero facts. Desktop remains unchanged. */
