@@ -76,7 +76,7 @@ export default function Home() {
             <figcaption><span>Detail</span><strong>Care where it counts</strong></figcaption>
           </figure>
           <figure className="photo-feature">
-            <Image src="/images/airbnb-cleaning-gold-coast.jpg" alt="Freshly presented Gold Coast short-stay apartment after cleaning" fill loading="lazy" sizes="(max-width: 760px) 100vw, 27vw" />
+            <Image src="/images/airbnb-turnover-gold-coast.webp" alt="Freshly presented Gold Coast short-stay apartment after cleaning" fill loading="lazy" sizes="(max-width: 760px) 100vw, 27vw" />
             <figcaption><span>Guest stays</span><strong>Fresh for every arrival</strong></figcaption>
           </figure>
         </section>
@@ -98,7 +98,7 @@ export default function Home() {
 
         <section className="area-showcase content-shell" aria-labelledby="area-title">
           <div className="area-showcase-photo">
-            <Image src="/images/airbnb-cleaning-gold-coast.jpg" alt="Clean and welcoming interior in the LAP Cleaning Services Gold Coast service area" fill loading="lazy" sizes="(max-width: 900px) 100vw, 46vw" />
+            <Image src="/images/airbnb-turnover-gold-coast.webp" alt="Clean and welcoming Gold Coast short-stay interior prepared for guests" fill loading="lazy" sizes="(max-width: 900px) 100vw, 46vw" />
           </div>
           <div className="area-showcase-copy">
             <span className="section-kicker">Gold Coast service area</span>
