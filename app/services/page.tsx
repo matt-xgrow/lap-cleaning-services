@@ -51,7 +51,7 @@ export default function ServicesPage() {
           {serviceOverview.map((service, index) => {
             const href = `/services/${service.slug}`;
             return <Link className="service-overview-card" href={href} key={service.slug} aria-label={`View ${service.name}`}>
-              <div className="service-overview-image"><Image src={serviceImages[service.slug]} alt={`${service.name} by LAP Cleaning Services`} fill loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw" /></div>
+              <div className="service-overview-image"><Image src={serviceImages[service.slug]} alt={`${service.name} by LAP Cleaning Services`} fill loading="lazy" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw" unoptimized /></div>
               <div className="service-overview-content">
                 <span className="service-overview-number">0{index + 1}</span>
                 <h2>{service.name}</h2>
