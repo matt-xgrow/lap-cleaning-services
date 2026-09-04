@@ -1,7 +1,20 @@
 import type { Metadata, Viewport } from "next";
+import { Bodoni_Moda, Jost } from "next/font/google";
 import { SITE_URL } from "../lib/site-data";
 import { Analytics } from "./components/Analytics";
 import "./globals.css";
+
+const displayFont = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const bodyFont = Jost({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -37,7 +50,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-AU">
-      <body>{children}<Analytics /></body>
+      <body className={`${displayFont.variable} ${bodyFont.variable}`}>{children}<Analytics /></body>
     </html>
   );
 }
