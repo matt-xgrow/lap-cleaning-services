@@ -82,8 +82,8 @@ export default async function ServicePage({ params }: Props) {
           <figure className="service-first-image"><Image src={serviceImages[service.slug]} alt={`LAP Cleaning Services ${service.shortName.toLowerCase()} on the Gold Coast`} fill priority sizes="(max-width: 900px) 100vw, 42vw" /></figure>
           <span className="section-kicker">A clear starting point</span><h2>{service.shortName} for your property.</h2><p>{service.whoItsFor}</p>
           <ul className="service-brief-list">{service.scope.slice(0, 3).map((item) => <li key={item}>{item}</li>)}</ul>
-          <FaqBlock items={service.faq.slice(0, 4)} title="Frequently asked questions." className="service-first-faq" />
         </aside>
+        <FaqBlock items={service.faq.slice(0, 4)} title="Frequently asked questions." className="service-first-faq" />
       </section>
 
       <TrustBar compact />
