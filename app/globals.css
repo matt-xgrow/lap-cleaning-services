@@ -597,7 +597,7 @@ ul, ol { margin: 0; padding: 0; }
 .service-brief-list { display: grid; gap: 8px; margin-top: 18px; list-style: none; }
 .service-brief-list li { padding: 11px 0 11px 22px; border-top: 1px solid var(--line); color: #51473e; font-size: .83rem; }
 .service-brief-list li::before { content: "✓"; margin-left: -22px; margin-right: 10px; color: #89694e; font-weight: 800; }
-.service-first-faq.faq-block { width: auto; margin: 0; padding: 28px 0 0; }
+.service-first-faq.faq-block { width: 100%; margin: 0; padding: 32px 24px; border-radius: var(--radius); background: var(--ivory); }
 .service-first-faq.faq-block h2 { font-size: 1.35rem; }
 .service-first-faq .faq-list { max-width: none; }
 .service-first-faq .faq-list summary { min-height: 58px; font-size: .84rem; }
@@ -613,6 +613,7 @@ ul, ol { margin: 0; padding: 0; }
 
 @media (min-width: 900px) {
   .service-first-section { grid-template-columns: minmax(0, .98fr) minmax(0, 1.02fr); align-items: start; gap: 28px; }
+  .service-first-faq { grid-column: 1 / -1; }
   .service-first-form { position: static; }
   .service-first-image { min-height: 270px; }
   .service-details-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
