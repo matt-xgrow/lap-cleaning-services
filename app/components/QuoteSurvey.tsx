@@ -41,7 +41,7 @@ export function QuoteSurvey({ initialService = "" }: { initialService?: string }
   const progress = ((step + 1) / stepLabels.length) * 100;
 
   useEffect(() => {
-    if (step === 1 || step === 3) fieldRef.current?.focus();
+    if (step === 1) fieldRef.current?.focus();\n    if (step === 3) nameRef.current?.focus();
   }, [step]);
 
   function startForm() {
@@ -73,7 +73,7 @@ export function QuoteSurvey({ initialService = "" }: { initialService?: string }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!data.name.trim()) { setError("Please enter your name so LAP knows who to contact."); fieldRef.current?.focus(); return; }
+    if (data.suburb.trim().length < 2) { setError("Please enter the Gold Coast suburb where cleaning is needed."); suburbRef.current?.focus(); return; }\n    if (!data.name.trim()) { setError("Please enter your name so LAP knows who to contact."); nameRef.current?.focus(); return; }
     if (data.phone.replace(/\D/g, "").length < 8) { setError("Please enter a valid phone number with at least 8 digits."); phoneRef.current?.focus(); return; }
     if (data.email && !/^\S+@\S+\.\S+$/.test(data.email)) { setError("Please check the email address, or leave it blank."); emailRef.current?.focus(); return; }
 
@@ -129,9 +129,11 @@ export function QuoteSurvey({ initialService = "" }: { initialService?: string }
           </fieldset>
         )}
         {step === 3 && (
-          <fieldset><legend>Where should we send your quote?</legend><p>Name and phone are required. Email is optional.</p>
+          <fieldset><legend>Where should we send your quote?</legend><p>Name, suburb and phone are required. Email is optional.</p>
             <div className="contact-fields">
-              <label htmlFor="quote-name">Name <span>Required</span></label><input ref={fieldRef} id="quote-name" name="name" value={data.name} onChange={(event) => update("name", event.target.value)} autoComplete="name" placeholder="Your name" />
+              <label htmlFor="quote-name">Name <span>Required</span></label><input ref={nameRef} id="quote-name" name="name" value={data.name} onChange={(event) => update("name", event.target.value)} autoComplete="name" placeholder="Your name" />
+              <label htmlFor="quote-contact-suburb">Suburb <span>Required</span></label><input ref={suburbRef} id="quote-contact-suburb" name="suburb" value={data.suburb} onChange={(event) => update("suburb", event.target.value)} list="contact-gold-coast-suburbs" autoComplete="address-level2" placeholder="e.g. Southport" aria-describedby={error ? "quote-error" : undefined} />
+              <datalist id="contact-gold-coast-suburbs">{suburbs.map((suburb) => <option key={suburb.slug} value={suburb.name} />)}</datalist>
               <label htmlFor="quote-phone">Phone <span>Required</span></label><input ref={phoneRef} id="quote-phone" name="phone" type="tel" inputMode="tel" value={data.phone} onChange={(event) => update("phone", event.target.value)} autoComplete="tel" placeholder="04xx xxx xxx" aria-describedby={error ? "quote-error" : undefined} />
               <label htmlFor="quote-email">Email <span>Optional</span></label><input ref={emailRef} id="quote-email" name="email" type="email" inputMode="email" value={data.email} onChange={(event) => update("email", event.target.value)} autoComplete="email" placeholder="you@example.com" aria-describedby={error ? "quote-error" : undefined} />
               <label className="honeypot" aria-hidden="true">Website<input name="website" tabIndex={-1} autoComplete="off" value={data.website} onChange={(event) => update("website", event.target.value)} /></label>
