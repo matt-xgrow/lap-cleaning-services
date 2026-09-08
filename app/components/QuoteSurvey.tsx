@@ -20,9 +20,10 @@ const stepLabels = ["Service", "Suburb", "Timing", "Contact"];
 function trackEvent(event: string, detail: Record<string, string> = {}) {
   if (typeof window === "undefined") return;
   const eventData = { event, client_id: business.clientId, ...detail };
-  const trackingWindow = window as typeof window & { dataLayer?: Record<string, unknown>[]; fbq?: (...args: unknown[]) => void };
+  const trackingWindow = window as typeof window & { dataLayer?: Record<string, unknown>[]; gtag?: (...args: unknown[]) => void; fbq?: (...args: unknown[]) => void };
   trackingWindow.dataLayer = trackingWindow.dataLayer || [];
   trackingWindow.dataLayer.push(eventData);
+  trackingWindow.gtag?.("event", event, { client_id: business.clientId, ...detail });
   if (event === "quote_form_submit") trackingWindow.fbq?.("track", "Lead", detail);
 }
 
