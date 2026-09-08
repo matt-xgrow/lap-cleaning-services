@@ -1,7 +1,7 @@
 import Script from "next/script";
 
 export function Analytics() {
-  const ga4 = process.env.NEXT_PUBLIC_GA4_ID;
+  const ga4 = process.env.NEXT_PUBLIC_GA4_ID ?? "G-NV7MSZ16FX";
   const gtm = process.env.NEXT_PUBLIC_GTM_ID;
   const meta = process.env.NEXT_PUBLIC_META_PIXEL_ID;
   return (
