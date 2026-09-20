@@ -75,7 +75,8 @@ export function QuoteSurvey({ initialService = "" }: { initialService?: string }
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (data.suburb.trim().length < 2) { setError("Please enter the Gold Coast suburb where cleaning is needed."); suburbRef.current?.focus(); return; }\n    if (!data.name.trim()) { setError("Please enter your name so LAP knows who to contact."); nameRef.current?.focus(); return; }
+    if (data.suburb.trim().length < 2) { setError("Please enter the Gold Coast suburb where cleaning is needed."); suburbRef.current?.focus(); return; }
+    if (!data.name.trim()) { setError("Please enter your name so LAP knows who to contact."); nameRef.current?.focus(); return; }
     if (data.phone.replace(/\D/g, "").length < 8) { setError("Please enter a valid phone number with at least 8 digits."); phoneRef.current?.focus(); return; }
     if (data.email && !/^\S+@\S+\.\S+$/.test(data.email)) { setError("Please check the email address, or leave it blank."); emailRef.current?.focus(); return; }
 
