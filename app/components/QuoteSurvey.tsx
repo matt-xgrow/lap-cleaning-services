@@ -37,6 +37,8 @@ export function QuoteSurvey({ initialService = "" }: { initialService?: string }
   const fieldRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const suburbRef = useRef<HTMLInputElement>(null);
 
   const serviceName = useMemo(() => services.find((item) => item.slug === data.service)?.shortName ?? serviceOptions.find((item) => item.slug === data.service)?.name ?? "Cleaning service", [data.service]);
   const progress = ((step + 1) / stepLabels.length) * 100;
