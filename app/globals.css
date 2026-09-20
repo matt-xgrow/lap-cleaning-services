@@ -149,6 +149,10 @@ ul, ol { margin: 0; padding: 0; }
 .honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 
 .site-footer { padding: 62px 0 86px; border-top: 1px solid var(--line); background: var(--ivory); }
+
+@media (min-width: 1180px) {
+  .site-footer { padding-bottom: 25px; }
+}
 .footer-main { display: grid; gap: 34px; }
 .footer-brand { max-width: 340px; }
 .footer-brand img { width: 160px; margin-bottom: 18px; }
