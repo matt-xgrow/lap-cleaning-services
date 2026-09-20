@@ -42,7 +42,8 @@ export function QuoteSurvey({ initialService = "" }: { initialService?: string }
   const progress = ((step + 1) / stepLabels.length) * 100;
 
   useEffect(() => {
-    if (step === 1) fieldRef.current?.focus();\n    if (step === 3) nameRef.current?.focus();
+    if (step === 1) fieldRef.current?.focus();
+    if (step === 3) nameRef.current?.focus();
   }, [step]);
 
   function startForm() {
