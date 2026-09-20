@@ -26,6 +26,7 @@ export function SiteFooter() {
       </div>
       <div className="footer-bottom content-shell">
         <span>© {new Date().getFullYear()} LAP Cleaning Services</span>
+        <span className="footer-credit"><span>Website by</span><a href="https://www.xgrow.com.au" target="_blank" rel="noopener" aria-label="XGROW — Business Automation & Marketing"><Image src="/images/xgrow-logo.png" alt="XGROW" width={158} height={44} /></a></span>
         <span><Link href="/privacy">Privacy Policy</Link><Link href="/terms">Terms</Link></span>
       </div>
     </footer>
