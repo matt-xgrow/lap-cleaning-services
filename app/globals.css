@@ -684,3 +684,51 @@ ul, ol { margin: 0; padding: 0; }
   .services-overview-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .service-overview-image { height: 134px; flex-basis: 134px; }
 }
+
+/* Work with us: cleaner application. Reuses the contact page layout. */
+.work-with-us-page { padding-bottom: 28px; }
+.work-with-us-layout { padding-bottom: 80px; }
+.work-with-us-layout aside a { color: #6e4a2b; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.application-form { position: relative; padding: 22px; border: 1px solid rgba(216, 203, 187, .9); border-radius: 22px; background: var(--paper); color: var(--ink); }
+.application-form h2 { font-size: clamp(1.45rem, 3vw, 2rem); }
+.application-form > p { margin: 10px 0 4px; color: var(--ink-soft); font-size: .9rem; }
+.application-form .field { margin-top: 16px; }
+.application-form .field label,
+.application-form legend { display: flex; justify-content: space-between; gap: 12px; width: 100%; margin: 0 0 7px; padding: 0; font-size: .78rem; font-weight: 720; }
+.application-form .field label span,
+.application-form legend span { color: var(--ink-soft); font-size: .68rem; font-weight: 600; }
+.application-form input,
+.application-form textarea { width: 100%; padding: 12px 14px; border: 1px solid #a99b8c; border-radius: 11px; background: #fff; color: var(--ink); font: inherit; font-size: 16px; }
+.application-form input { min-height: 54px; }
+.application-form textarea { min-height: 120px; resize: vertical; line-height: 1.45; }
+.application-form input:focus,
+.application-form textarea:focus { border-color: #6e4a2b; box-shadow: 0 0 0 4px rgba(123, 79, 44, .12); outline: none; }
+.application-form input[aria-invalid="true"],
+.application-form textarea[aria-invalid="true"] { border-color: var(--error); }
+.application-form .field-hint { margin-top: 6px; color: var(--ink-soft); font-size: .75rem; }
+.application-form fieldset { min-width: 0; margin: 16px 0 0; padding: 0; border: 0; }
+.car-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.car-choices label { min-height: 54px; display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin: 0; padding: 12px 14px; border: 1px solid var(--line); border-radius: 13px; background: #fff; font-size: .92rem; font-weight: 650; }
+.application-form .car-choices input { width: 1.1rem; min-height: 1.1rem; margin: 0; padding: 0; accent-color: var(--cta); }
+.application-form fieldset[aria-invalid="true"] .car-choices label { border-color: #e3b6b6; }
+.application-success { padding: 28px 22px 34px; border: 1px solid rgba(216, 203, 187, .9); border-radius: 22px; background: var(--paper); text-align: center; }
+.application-success:focus { outline: none; }
+.application-success h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.application-success p { margin-top: 14px; color: var(--ink-soft); }
+.application-success .success-mark { margin-bottom: 18px; }
+
+@media (max-width: 899px) {
+  .work-with-us-page { padding-bottom: 12px; }
+  .work-with-us-layout { padding-bottom: 108px; }
+}
+
+@media (min-width: 900px) {
+  .application-form { padding: 34px; }
+}
+
+/* The extra Work with us link needs a slightly tighter header between the desktop-nav breakpoint and wide screens. */
+@media (min-width: 900px) and (max-width: 1120px) {
+  .header-inner { gap: 12px; }
+  .desktop-nav { gap: 14px; font-size: .78rem; }
+  .header-quote { padding-inline: 12px; }
+}

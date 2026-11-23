@@ -14,7 +14,7 @@ export function SiteFooter() {
           <strong>Gold Coast, Queensland, Australia</strong>
         </div>
         <div className="footer-column"><strong>Services</strong><Link href="/services">All cleaning services</Link>{services.map((service) => <Link key={service.slug} href={`/services/${service.slug}`}>{service.shortName}</Link>)}</div>
-        <div className="footer-column"><strong>Company</strong><Link href="/about">About</Link><Link href="/contact">Contact</Link><Link href="/faq">FAQ</Link><Link href="/guides">Guides</Link></div>
+        <div className="footer-column"><strong>Company</strong><Link href="/about">About</Link><Link href="/work-with-us">Work with us</Link><Link href="/contact">Contact</Link><Link href="/faq">FAQ</Link><Link href="/guides">Guides</Link></div>
         <div className="footer-column"><strong>Popular areas</strong>{suburbs.slice(0, 6).map((suburb) => <Link key={suburb.slug} href={`/locations/${suburb.slug}`}>{suburb.name}</Link>)}</div>
       </div>
       <div className="footer-contact content-shell">

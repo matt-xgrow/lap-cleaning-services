@@ -3,7 +3,7 @@ import { comboPages, guides, services, serviceOptions, SITE_URL, suburbs } from 
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const updated = new Date("2026-09-02");
-  const staticPaths = ["", "/services", "/locations", "/about", "/reviews", "/contact", "/faq", "/guides", "/privacy", "/terms"];
+  const staticPaths = ["", "/services", "/locations", "/about", "/work-with-us", "/reviews", "/contact", "/faq", "/guides", "/privacy", "/terms"];
   return [
     ...staticPaths.map((path, index) => ({ url: `${SITE_URL}${path}`, lastModified: updated, changeFrequency: "monthly" as const, priority: index === 0 ? 1 : 0.7 })),
     ...services.map((service) => ({ url: `${SITE_URL}/services/${service.slug}`, lastModified: updated, changeFrequency: "monthly" as const, priority: 0.9 })),
