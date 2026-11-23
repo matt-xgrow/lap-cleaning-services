@@ -26,7 +26,7 @@ export function SiteHeader() {
           <Image src="/images/lap-cleaning-services-logo.jpg" alt="LAP Cleaning Services" width={220} height={120} priority />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <details className="nav-menu"><summary>Services</summary><div className="nav-panel">{services.map((service) => <Link key={service.slug} href={`/services/${service.slug}`} onClick={closeMenu}>{service.shortName}<span aria-hidden="true">↗</span></Link>)}<Link href="/services" onClick={closeMenu}><strong>View all cleaning services</strong><span aria-hidden="true">↗</span></Link></div></details><Link href="/locations" onClick={closeMenu}>Areas</Link><Link href="/about" onClick={closeMenu}>About</Link><Link href="/guides" onClick={closeMenu}>Guides</Link><Link href="/contact" onClick={closeMenu}>Contact</Link>
+          <details className="nav-menu"><summary>Services</summary><div className="nav-panel">{services.map((service) => <Link key={service.slug} href={`/services/${service.slug}`} onClick={closeMenu}>{service.shortName}<span aria-hidden="true">↗</span></Link>)}<Link href="/services" onClick={closeMenu}><strong>View all cleaning services</strong><span aria-hidden="true">↗</span></Link></div></details><Link href="/locations" onClick={closeMenu}>Areas</Link><Link href="/about" onClick={closeMenu}>About</Link><Link href="/work-with-us" onClick={closeMenu}>Work with us</Link><Link href="/guides" onClick={closeMenu}>Guides</Link><Link href="/contact" onClick={closeMenu}>Contact</Link>
         </nav>
         <div className="header-actions">
           {business.phone && <TrackedContactLink className="header-phone" href={`tel:${business.phone}`} eventName="phone_tap">{business.phoneDisplay || business.phone}</TrackedContactLink>}
@@ -48,6 +48,7 @@ export function SiteHeader() {
               <div className="mobile-main-links">
                 <Link href="/locations" onClick={closeMenu}>Service areas</Link>
                 <Link href="/about" onClick={closeMenu}>About LAP</Link>
+                <Link href="/work-with-us" onClick={closeMenu}>Work with us</Link>
                 <Link href="/contact" onClick={closeMenu}>Contact</Link>
                 <Link href="/faq" onClick={closeMenu}>FAQ</Link>
                 <Link href="/guides" onClick={closeMenu}>Guides</Link>
