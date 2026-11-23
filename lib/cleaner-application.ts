@@ -2,6 +2,12 @@ export const applicationFields = ["name", "email", "phone", "abn", "availability
 
 export type ApplicationField = (typeof applicationFields)[number];
 
+export const applicationSteps = [
+  { title: "Your details", description: "How should LAP reach you?", fields: ["name", "email", "phone"] },
+  { title: "ABN and car", description: "ABN is checked as 11 digits. Spaces are fine.", fields: ["abn", "hasCar"] },
+  { title: "Availability", description: "Tell LAP when you can work, and what cleaning you have done.", fields: ["availability", "experience"] },
+] as const satisfies readonly { title: string; description: string; fields: readonly ApplicationField[] }[];
+
 export type CleanerApplication = {
   name: string;
   email: string;
@@ -28,30 +34,72 @@ const formatAbn = (digits: string) => `${digits.slice(0, 2)} ${digits.slice(2, 5
 
 const singleLine = (value: string, max: number) => value.replace(/[\r\n\t]+/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
 
+const asRecord = (input: unknown) => typeof input === "object" && input !== null && !Array.isArray(input) ? input as Record<string, unknown> : {};
+
+function fieldError(field: ApplicationField, record: Record<string, unknown>) {
+  if (field === "name") {
+    const name = clean(record.name);
+    if (!name) return "Please enter your name.";
+    if (name.length > limits.name) return "Please enter a shorter name.";
+  }
+  if (field === "email" && !isEmailAddress(clean(record.email).toLowerCase())) return "Please enter a valid email address.";
+  if (field === "phone") {
+    const phone = clean(record.phone);
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phone.length > limits.phone || phoneDigits.length < 8 || phoneDigits.length > 15) return "Please enter a phone number with 8 to 15 digits.";
+  }
+  if (field === "abn") {
+    const abnSource = clean(record.abn);
+    if (abnSource.replace(/\D/g, "").length !== 11 || abnSource.length > 20) return "Please enter an 11-digit ABN. Spaces are fine.";
+  }
+  if (field === "availability") {
+    const availability = clean(record.availability);
+    if (!availability) return "Please tell us when you are available.";
+    if (availability.length > limits.availability) return "Please shorten your availability so it fits in the email.";
+  }
+  if (field === "experience") {
+    const experience = clean(record.experience);
+    if (!experience) return "Please tell us about your cleaning experience.";
+    if (experience.length > limits.experience) return "Please shorten your experience so it fits in the email.";
+  }
+  if (field === "hasCar" && clean(record.hasCar).toLowerCase() !== "yes" && clean(record.hasCar).toLowerCase() !== "no") return "Please tell us whether you have a car.";
+  return "";
+}
+
+export function applicationStepForField(field: ApplicationField) {
+  const index = applicationSteps.findIndex((step) => (step.fields as readonly ApplicationField[]).includes(field));
+  return index === -1 ? 0 : index;
+}
+
+export function validateApplicationStep(input: unknown, step: number): { ok: true } | { ok: false; error: string; field: ApplicationField } {
+  const record = asRecord(input);
+  for (const field of applicationSteps[step]?.fields ?? []) {
+    const error = fieldError(field, record);
+    if (error) return { ok: false, error, field };
+  }
+  return { ok: true };
+}
+
 export function parseCleanerApplication(input: unknown): ApplicationParseResult {
-  const record = typeof input === "object" && input !== null && !Array.isArray(input) ? input as Record<string, unknown> : {};
-  const name = clean(record.name);
-  const email = clean(record.email).toLowerCase();
-  const phone = clean(record.phone);
-  const abnSource = clean(record.abn);
-  const abnDigits = abnSource.replace(/\D/g, "");
-  const availability = clean(record.availability);
-  const experience = clean(record.experience);
+  const record = asRecord(input);
+  for (const field of applicationFields) {
+    const error = fieldError(field, record);
+    if (error) return { ok: false, error, field };
+  }
+
   const hasCar = clean(record.hasCar).toLowerCase();
-
-  if (!name) return { ok: false, field: "name", error: "Please enter your name." };
-  if (name.length > limits.name) return { ok: false, field: "name", error: "Please enter a shorter name." };
-  if (!isEmailAddress(email)) return { ok: false, field: "email", error: "Please enter a valid email address." };
-  const phoneDigits = phone.replace(/\D/g, "");
-  if (phone.length > limits.phone || phoneDigits.length < 8 || phoneDigits.length > 15) return { ok: false, field: "phone", error: "Please enter a phone number with 8 to 15 digits." };
-  if (abnDigits.length !== 11 || abnSource.length > 20) return { ok: false, field: "abn", error: "Please enter an 11-digit ABN. Spaces are fine." };
-  if (!availability) return { ok: false, field: "availability", error: "Please tell us when you are available." };
-  if (availability.length > limits.availability) return { ok: false, field: "availability", error: "Please shorten your availability so it fits in the email." };
-  if (!experience) return { ok: false, field: "experience", error: "Please tell us about your cleaning experience." };
-  if (experience.length > limits.experience) return { ok: false, field: "experience", error: "Please shorten your experience so it fits in the email." };
-  if (hasCar !== "yes" && hasCar !== "no") return { ok: false, field: "hasCar", error: "Please tell us whether you have a car." };
-
-  return { ok: true, application: { name, email, phone, abn: abnDigits, availability, experience, hasCar } };
+  return {
+    ok: true,
+    application: {
+      name: clean(record.name),
+      email: clean(record.email).toLowerCase(),
+      phone: clean(record.phone),
+      abn: clean(record.abn).replace(/\D/g, ""),
+      availability: clean(record.availability),
+      experience: clean(record.experience),
+      hasCar: hasCar === "yes" ? "yes" : "no",
+    },
+  };
 }
 
 export function applicationMessage(application: CleanerApplication) {
